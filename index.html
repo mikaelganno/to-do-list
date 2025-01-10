@@ -11,7 +11,8 @@
     <meta name="msapplication-TileColor" content="#2d89ef" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="style.css" />
-    <title>Javascript Todo-list App</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <title>BudgetApp</title>
     <meta
       name="description"
       content="Manage your tasks effortlessly with our JavaScript Todos List App. Organize, prioritize, and track your to-dos seamlessly using this user-friendly web application."
@@ -26,26 +27,42 @@
       <div class="screen-backdrop"></div>
       <div class="home-screen screen">
         <div class="head-wrapper">
-          <div class="menu-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
-              />
-            </svg>
+          <div class="navbar">
+            <div class="menu-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+                />
+              </svg>
+            </div>
+            <div class="right-navbar">
+              <div class="menu-btn">
+                <i class="bx bx-cog"></i>
+              </div>
+              <div class="menu-btn">
+                <i class="bx bx-pie-chart-alt-2" style="color: #28a745;"></i>
+              </div>
+              <div class="menu-btn">
+                <i class="bx bx-history" style="color: #ff5733;"></i>
+              </div>
+              <div class="menu-btn">
+                <i class="bx bx-line-chart" style="color: #33c4ff;"></i>
+              </div>
+            </div>
           </div>
           <div class="welcome">
             <div class="content">
-              <h1>Hello John</h1>
-              <p>Today you have <span id="total-tasks">5</span> tasks</p>
+              <h1>Dashboard</h1>
+              <p><span id="total-tasks">5</span> transactions</p>
             </div>
             <div class="img">
               <div class="backdrop"></div>
@@ -54,13 +71,38 @@
           </div>
         </div>
         <div class="categories-wrapper">
+          <!----- =============== Cards Start ================ ----->
+          <ul class="cards">
+            <li>
+                <i class="bx bx-money"></i>
+                <span class="info">
+                    <h3><span>$</span><span class="budget_card">300</span></h3>
+                    <p>Budget</p>
+                </span>
+            </li>
+            <li>
+                <i class="bx bx-credit-card"></i>
+                <span class="info">
+                    <h3><span>$</span><span class="expenses_card">0</span></h3>
+                    <p>Expenses</p>
+                </span>
+            </li>
+            <li>
+                <i class="bx bx-dollar"></i>
+                <span class="info">
+                    <h3><span>$</span><span class="balance_card">100</span></h3>
+                    <p>Balance</p>
+                </span>
+            </li>
+        </ul>
+        <!----- =============== Cards Close ================ ----->
           <div class="categories">
             <div class="category">
               <div class="left">
                 <img src="images/boy.png" alt="sun" />
                 <div class="content">
                   <h1>Personal</h1>
-                  <p>5 Tasks</p>
+                  <p>5 Transactions</p>
                 </div>
               </div>
               <div class="options">
@@ -123,7 +165,7 @@
         <div class="category-details">
           <img src="images/boy.png" alt="" id="category-img" />
           <div class="details">
-            <p id="num-tasks">8 tasks</p>
+            <p id="num-tasks">8 transactions</p>
             <h1 id="category-title">Personal</h1>
           </div>
         </div>
@@ -148,7 +190,9 @@
                     />
                   </svg>
                 </span>
+                <p>13th Sep, 2018</p>
                 <p>Buy a new car lorem</p>
+                <p>30 $</p>
               </label>
               <div class="delete">
                 <svg
@@ -189,9 +233,13 @@
       <div class="black-backdrop"></div>
       <div class="add-task">
         <div class="add-task-backdrop"></div>
-        <h1 class="heading">Add Task</h1>
+        <h1 class="heading">Add Transactions</h1>
         <div class="input-group">
-          <label for="task-input"> Task </label>
+          <label for="amount-input"> Amount </label>
+          <input type="text" id="amount-input" required />
+        </div>
+        <div class="input-group">
+          <label for="task-input"> Transactions </label>
           <input type="text" id="task-input" required />
         </div>
         <div class="input-group">

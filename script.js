@@ -8,11 +8,11 @@ let categories = [
     img: "briefcase.png",
   },
   {
-    title: "Shopping",
+    title: "Alimentation",
     img: "shopping.png",
   },
   {
-    title: "Coding",
+    title: "Hobby",
     img: "web-design.png",
   },
   {
@@ -28,7 +28,7 @@ let categories = [
     img: "education.png",
   },
   {
-    title: "Finance",
+    title: "Investissment",
     img: "saving.png",
   },
 ];
@@ -188,6 +188,8 @@ let tasks = [
   // Add more tasks for each category as desired
 ];
 
+
+
 // Define functions
 const saveLocal = () => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -209,8 +211,18 @@ const updateTotals = () => {
     (task) =>
       task.category.toLowerCase() === selectedCategory.title.toLowerCase()
   );
-  numTasks.innerHTML = `${categoryTasks.length} Tasks`;
+  // Accord a word with "s"
+  var plural = "";
+      
+  if (categoryTasks.length > 1) {
+    plural = "s";
+  } else {
+    plural = "";
+  }
+  numTasks.innerHTML = `${categoryTasks.length} transaction${plural}`;
   totalTasks.innerHTML = tasks.length;
+  expensesCard.innerHTML = tasks.length * 10;
+  balanceCard.innerHTML = budgetCard.innerHTML - expensesCard.innerHTML;
 };
 
 const renderCategories = () => {
@@ -230,6 +242,15 @@ const renderCategories = () => {
       renderTasks();
     });
 
+    // Accord a word with "s"
+    var plural = "";
+        
+    if (categoryTasks.length > 1) {
+      plural = "s";
+    } else {
+      plural = "";
+    }
+
     div.innerHTML = `
                   <div class="left">
                 <img src="images/${category.img}"
@@ -237,7 +258,7 @@ const renderCategories = () => {
                   />
                 <div class="content">
                   <h1>${category.title}</h1>
-                  <p>${categoryTasks.length} Tasks</p>
+                  <p>${categoryTasks.length} transaction${plural}</p>
                 </div>
               </div>
               <div class="options">
@@ -260,6 +281,7 @@ const renderCategories = () => {
               </div>
     `;
 
+
     categoriesContainer.appendChild(div);
   });
 };
@@ -271,7 +293,7 @@ const renderTasks = () => {
       task.category.toLowerCase() === selectedCategory.title.toLowerCase()
   );
   if (categoryTasks.length === 0) {
-    tasksContainer.innerHTML = `<p class="no-tasks">No tasks added for this category</p>`;
+    tasksContainer.innerHTML = `<p class="no-tasks">No transaction added for this category</p>`;
   } else {
     categoryTasks.forEach((task) => {
       const div = document.createElement("div");
@@ -323,7 +345,9 @@ const renderTasks = () => {
                   />
                 </svg>
               </span>
+              <p>13th Sep, 2018</p>
               <p>${task.task}</p>
+              <p>${task.amount} $</p>
         `;
       label.prepend(checkbox);
       div.prepend(label);
@@ -352,18 +376,23 @@ const toggleAddTaskForm = () => {
 const addTask = (e) => {
   e.preventDefault();
   const task = taskInput.value;
+  const amount = parseInt(amountInput.value);
   const category = categorySelect.value;
 
   if (task === "") {
-    alert("Please enter a task");
+    alert("Please enter a transaction");
+  } else if (!amount) {
+    alert("Please enter an amount");
   } else {
     const newTask = {
       id: tasks.length + 1,
       task,
+      amount,
       category,
       completed: false,
     };
     taskInput.value = "";
+    amountInput.value = "";
     tasks.push(newTask);
     saveLocal();
     toggleAddTaskForm();
@@ -385,10 +414,14 @@ const categorySelect = document.getElementById("category-select");
 const addTaskWrapper = document.querySelector(".add-task");
 const addTaskBtn = document.querySelector(".add-task-btn");
 const taskInput = document.getElementById("task-input");
+const amountInput = document.getElementById("amount-input");
 const blackBackdrop = document.querySelector(".black-backdrop");
 const addBtn = document.querySelector(".add-btn");
 const cancelBtn = document.querySelector(".cancel-btn");
 const totalTasks = document.getElementById("total-tasks");
+const budgetCard = document.querySelector(".budget_card");
+const expensesCard = document.querySelector(".expenses_card");
+const balanceCard = document.querySelector(".balance_card");
 
 // Attach event listeners
 menuBtn.addEventListener("click", toggleScreen);

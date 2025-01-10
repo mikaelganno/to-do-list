@@ -1,7 +1,24 @@
-@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+@import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Ruda:wght@400;600&display=swap");
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+:root {
+    --white: #fff;
+    --light-blue: #39a6f0;
+    --backdrop: #e5e7fd;
+    --light: #f6f6f9;
+    --primary: #1976d2;
+    --light-primary: #cfe8ff;
+    --dark: #363949;
+    --danger: #d32f2f;
+    --light-danger: #fecdd3;
+    --warning: #fbc02d;
+    --light-warning: #fff2c6;
+    --success: #388e3c;
+    --light-success: #bbf7d0;
 }
 
 * {
@@ -15,9 +32,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #2e2e2e;
+    color: var(--dark);
     font-family: "Inter", sans-serif;
-    background-color: #fff;
+    background-color: var(--white);
 }
 
 .wrapper {
@@ -34,7 +51,7 @@ body {
         height: 50rem;
         width: 25rem;
         border-radius: 40px;
-        border: 10px solid #2e2e2e;
+        border: 10px solid var(--dark);
     }
 }
 
@@ -52,7 +69,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 0 0 50% 50%;
-    background-color: #39a6f0;
+    background-color: var(--light-blue);
     z-index: -1;
     transition: all 0.3s;
 }
@@ -73,17 +90,33 @@ body {
     padding: 0 30px;
 }
 
+.navbar {
+    display: flex;
+}
+
+.right-navbar {
+    position: absolute;
+    display: flex;
+    right: 0;
+}
+
 .menu-btn {
     width: 2rem;
     cursor: pointer;
-    color: #ffffff;
+    color: var(--white);
+}
+
+.menu-btn i {
+    font-size: 25px;
+    background-color: var(--dark);
+    border-radius: 5px;
 }
 
 .welcome {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    color: #ffffff;
+    color: var(--white);
 }
 
 .welcome h1 {
@@ -106,7 +139,7 @@ body {
     width: 3.8rem;
     height: 4rem;
     border-radius: 50%;
-    background-color: #e5e7fd;
+    background-color: var(--backdrop);
     z-index: -1;
 }
 
@@ -130,7 +163,7 @@ body {
 }
 
 .category {
-    background: #fff;
+    background: var(--white);
     border-radius: 0.5rem;
     padding: 1.5rem 1rem;
     cursor: pointer;
@@ -161,7 +194,7 @@ body {
 }
 
 .category .content p {
-    color: #2e2e2e;
+    color: var(--dark);
     font-size: 0.8rem;
     opacity: 0.6;
 }
@@ -198,7 +231,7 @@ body {
 .category-screen .head-wrapper svg {
     width: 2rem;
     cursor: pointer;
-    color: #fff;
+    color: var(--white);
 }
 
 .category-details {
@@ -260,7 +293,7 @@ body {
     width: 1rem;
     height: 1rem;
     border-radius: 2px;
-    border: 1px solid #2e2e2e;
+    border: 1px solid var(--dark);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -268,7 +301,7 @@ body {
 
 .task .checkmark svg {
     width: 1rem;
-    color: #2e2e2e;
+    color: var(--dark);
     opacity: 0;
     transition: all 0.3s;
 }
@@ -282,12 +315,12 @@ body {
 }
 
 .task input:checked~.checkmark {
-    background-color: #2e2e2e;
+    background-color: var(--dark);
 }
 
 .task input:checked~.checkmark svg {
     opacity: 1;
-    color: #fff;
+    color: var(--white);
 }
 
 .task input:checked~p {
@@ -300,7 +333,7 @@ body {
     height: 2rem;
     padding: 0.5rem;
     border-radius: 50%;
-    color: #2e2e2e;
+    color: var(--dark);
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.031);
     opacity: 0;
@@ -337,7 +370,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #39a6f0;
+    background-color: var(--light-blue);
     transition: all 0.3s;
 }
 
@@ -353,7 +386,7 @@ body {
 
 .add-task-btn svg {
     width: 2rem;
-    color: #fff;
+    color: var(--white);
 }
 
 .add-task {
@@ -422,8 +455,8 @@ body {
 }
 
 button.add-btn {
-    background-color: #39a6f0;
-    color: #fff
+    background-color: var(--light-blue);
+    color: var(--white);
 }
 
 .add-task-backdrop {
@@ -434,7 +467,7 @@ button.add-btn {
     width: 135%;
     height: 20rem;
     border-radius: 50% 50% 0 0;
-    background-color: #fff;
+    background-color: var(--white);
 }
 
 .black-backdrop {
@@ -454,3 +487,64 @@ button.add-btn {
     opacity: 1;
     visibility: visible;
 }
+
+
+/*================ Cards Start ================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 1.5rem;
+    padding: 2rem;
+}
+
+.cards li {
+    padding: 1.8rem;
+    background-color: var(--light);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.cards li:hover {
+    transform: translateY(-10px);
+}
+
+.cards li .bx {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards li:nth-child(1) .bx {
+    background-color: var(--light-primary);
+    color: var(--primary);
+}
+
+.cards li:nth-child(2) .bx {
+    background-color: var(--light-warning);
+    color: var(--warning);
+}
+
+.cards li:nth-child(3) .bx {
+    background-color: var(--light-success);
+    color: var(--success);
+}
+
+.cards li .info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.cards li .info p {
+    color: var(--dark);
+}
+
+/*================ Cards Close ================== */
